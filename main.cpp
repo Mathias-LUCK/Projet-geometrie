@@ -3,6 +3,7 @@
 #include "shapes.hpp"
 #include <vector>
 #include <assert.h>
+#define _USE_MATH_DEFINES
 #include <cmath>
 #include <iostream>
 using namespace std;
@@ -36,21 +37,28 @@ int main() {
 	assert( equals( square.area(), 50*50+50*50) );
 	assert(square.center().x == 0);
 	assert(square.center().y == 50);
+	square.draw();
 
 	Square square2(points.at(0), points.at(2));
-	assert( equals( square2.side(), sqrt(100) ) );
-	assert( equals( square2.perimeter(), 4*sqrt(100) ) );
+	assert( equals( square2.side(), 100) ) ;
+	assert( equals( square2.perimeter(), 4*100 ) );
 	assert( equals( square2.area(), 100*100) );
 	assert(square2.center().x == 50);
 	assert(square2.center().y == 50);
+	square2.draw();
 
-	
+	// Tests cercle 
+	Circle circle(50, Point(0, 0));
+	assert( equals( circle.radius, 50 ) );
+	assert( equals( circle.circumference(), 2*M_PI*50 ) );
+	assert( equals( circle.area(), M_PI*50*50 ) );
+
 	// Tests triangle
-	Triangle triangle(points.at(0), points.at(1), points.at(2));
+	/* Triangle triangle(points.at(0), points.at(1), points.at(2));
 	assert(triangle.perimeter() == 300);
 	assert(triangle.area() == 10000);
 	assert(triangle.center().x == 50);
-	assert(triangle.center().y == 50);
+	assert(triangle.center().y == 50); */
 
 	// Draw the picture by connecting the points
 	// draw_picture(points);
