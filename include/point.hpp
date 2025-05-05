@@ -6,7 +6,7 @@ struct Point {
 
 	Point(double x_val = 0, double y_val = 0);
 	
-	double distance(Point B = Point()); //
+	double distance(Point B); //
 };
 
 #endif // POINT_HPP
