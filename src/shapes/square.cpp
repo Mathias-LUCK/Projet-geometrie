@@ -1,6 +1,8 @@
 #include "point.hpp"
 #include "shapes/square.hpp"
 #include <math.h>
+#include <vector>
+#include "draw.hpp"
 
 Square::Square(Point P, Point R) : A(P), C(R) {};
 
@@ -20,3 +22,23 @@ Point Square::center() {
     return Point((A.x+C.x)/2, (A.y+C.y)/2);
 }
 
+void Square::draw() {
+    // Calcul des coordonnées des autres points
+    double mx = (A.x + C.x) / 2;
+    double my = (A.y + C.y) / 2;
+
+    double vx = C.x - A.x;
+    double vy = C.y - A.y;
+
+    double bx = mx - vy / 2;
+    double by = my + vx / 2;
+
+    double dx = mx + vy / 2;
+    double dy = my - vx / 2;
+
+    Point B(bx, by);
+    Point D(dx, dy);
+
+    std::vector<Point> points = {A, B, C, D, A};
+    draw_picture(points);
+}
