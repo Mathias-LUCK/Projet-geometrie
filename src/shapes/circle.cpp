@@ -5,13 +5,15 @@
 Circle::Circle(double r, Point c) : radius(r), center(c) {};
 
 double Circle::circumference(){
-    return 2*M_PI*radius.distance(center);
+    return 2*M_PI*radius;
 }
 
 double Circle::area(){
-    return M_PI*radius.distance(center)*radius.distance(center)
+    return M_PI*radius*radius;
 }
 
-void Circle::draw(){
-    
-}
+/*void Circle::draw(){
+    for (size_t i = 1; i < 360 ; ++i) {
+		t.setposition(points[i].x, points[i].y);
+	}
+}*/
