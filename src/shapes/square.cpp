@@ -22,8 +22,7 @@ Point Square::center() {
     return Point((A.x+C.x)/2, (A.y+C.y)/2);
 }
 
-void Square::draw() {
-    // Calcul des coordonnées des autres points
+void Square::find_other_corner(Point P, Point Q, Point &R, Point &S) {
     double mx = (A.x + C.x) / 2;
     double my = (A.y + C.y) / 2;
 
@@ -36,9 +35,14 @@ void Square::draw() {
     double dx = mx + vy / 2;
     double dy = my - vx / 2;
 
-    Point B(bx, by);
-    Point D(dx, dy);
+    R = Point(bx, by);
+    S = Point(dx, dy);
+}
 
+void Square::draw() {
+    // Calcul des coordonnées des autres points
+    Point B, D;
+    find_other_corner(A, C, B, D);
     std::vector<Point> points = {A, B, C, D, A};
     draw_picture(points);
 }

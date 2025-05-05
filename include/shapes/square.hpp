@@ -17,6 +17,8 @@ struct Square {
 	
 	Point center();
 	
+	void find_other_corner(Point P, Point Q, Point &R, Point &S);
+	
 	void draw();
 	
 	void translate(Point T);
