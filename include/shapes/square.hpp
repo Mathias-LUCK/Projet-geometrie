@@ -9,6 +9,8 @@ struct Square {
 
 	Square(Point P, Point Q);
 	
+	Point middle(Point P, Point Q);
+
 	double side();
 	
 	double perimeter();
@@ -16,6 +18,8 @@ struct Square {
 	double area();
 	
 	Point center();
+	
+	void find_other_corner(Point P, Point Q, Point &R, Point &S);
 	
 	void draw();
 	
