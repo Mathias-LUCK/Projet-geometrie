@@ -9,6 +9,8 @@ struct Square {
 
 	Square(Point P, Point Q);
 	
+	Point middle(Point P, Point Q);
+
 	double side();
 	
 	double perimeter();

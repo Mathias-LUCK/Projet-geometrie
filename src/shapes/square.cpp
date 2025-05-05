@@ -6,6 +6,10 @@
 
 Square::Square(Point P, Point R) : A(P), C(R) {};
 
+Point Square::middle(Point P, Point Q) {
+    return Point((A.x+C.x)/2, (A.y+C.y)/2);
+}
+
 double Square::side() {
     return (1/sqrt(2))*A.distance(C);
 }
@@ -23,18 +27,18 @@ Point Square::center() {
 }
 
 void Square::find_other_corner(Point P, Point Q, Point &R, Point &S) {
-    double mx = (A.x + C.x) / 2;
-    double my = (A.y + C.y) / 2;
+    // Calcul du milieu de la diagonale
+    Point M = middle(A, C);
 
+    // Calcule du vecteur de la diagonale
     double vx = C.x - A.x;
     double vy = C.y - A.y;
 
-    double bx = mx - vy / 2;
-    double by = my + vx / 2;
-
-    double dx = mx + vy / 2;
-    double dy = my - vx / 2;
-
+    // Calcul des coordonnées du point B et du point D
+    double bx = M.x - vy / 2;
+    double by = M.y + vx / 2;
+    double dx = M.x + vy / 2;
+    double dy = M.y - vx / 2;
     R = Point(bx, by);
     S = Point(dx, dy);
 }
@@ -52,13 +56,16 @@ void Square::translate(Point T) {
     A.y += T.y;
     C.x += T.x;
     C.y += T.y;
+    draw();
 }
 
 void Square::resize(double ratio) {
-    A.x *= ratio;
-    A.y *= ratio;
-    C.x *= ratio;
-    C.y *= ratio;
+    Point M = middle(A, C);
+    A.x = M.x - ratio * side() / 2;
+    A.y = M.y - ratio * side() / 2;
+    C.x = M.x + ratio * side() / 2;
+    C.y = M.y + ratio * side() / 2;
+    draw();
 }
 
 void Square::rotate(double angle) {
@@ -70,6 +77,7 @@ void Square::rotate(double angle) {
     y = C.y;
     C.x = x * cos(angle) - y * sin(angle);
     C.y = x * sin(angle) + y * cos(angle);
+    draw();
 }
 
 bool Square::equals(Square square) {
