@@ -13,9 +13,10 @@ double Triangle::perimeter(){
 }
 
 double Triangle::area(){
-    return 1/2*(A.x*(B.y-C.y)+B.x*(C.y-A.y)+C.x*(A.y-B.y));
+    double p = perimeter()/2;
+    return sqrt(p*(p-A.distance(B))*(p-B.distance(C))*(p-C.distance(A)));
 }
-
+    
 Point Triangle::center(){
     Point G;
     G.x = (A.x+B.x+C.x)/3; //formule de xG
