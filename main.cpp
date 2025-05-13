@@ -49,7 +49,7 @@ int main() {
 	assert(square2.center().x == 50);
 	assert(square2.center().y == 50);
 	square2.resize(0.5);
-	cout << square2.center().x << " " << square2.center().y ; 
+	
 	assert(square2.center().x == 50 && square2.center().y == 50);
 	assert( equals( square2.perimeter(), 2*100 ) );
 	assert( equals( square2.area(), 50*50) );
@@ -72,18 +72,101 @@ int main() {
 	assert(out_circle.center.x == 50 && in_circle.center.y == 50);
 	cout << "All square tests passed!" << endl;
 
-	// Tests cercle 
-	Circle circle(50, Point(0, 0));
-	assert( equals( circle.radius, 50 ) );
-	assert( equals( circle.circumference(), 2*M_PI*50 ) );
-	assert( equals( circle.area(), M_PI*50*50 ) );
+	// Tests Circle
+    Circle circle(50, Point(10, 10));
+    assert(equals(circle.radius, 50));
+    assert(equals(circle.circumference(), 2*M_PI*50));
+    assert(equals(circle.area(), M_PI*50*50));
+    assert(circle.center.x == 10);
+    assert(circle.center.y == 10);
 
-	// Tests triangle
-	/* Triangle triangle(points.at(0), points.at(1), points.at(2));
-	assert(triangle.perimeter() == 300);
-	assert(triangle.area() == 10000);
-	assert(triangle.center().x == 50);
-	assert(triangle.center().y == 50); */
+    // Test circle translation
+    circle.translate(Point(10, 10));
+    assert(circle.center.x == 20);
+    assert(circle.center.y == 20);
+    assert(equals(circle.radius, 50));
+    assert(equals(circle.circumference(), 2*M_PI*50));
+    assert(equals(circle.area(), M_PI*50*50));
+
+    // Test circle resize
+    circle.resize(2);
+    assert(equals(circle.radius, 100));
+    assert(equals(circle.area(), M_PI*100*100));
+    assert(equals(circle.circumference(), 2*M_PI*100));
+    assert(circle.center.x == 20); // Center should remain the same
+    assert(circle.center.y == 20);
+
+    // Test circle equals
+    Circle circle2(100, Point(20, 20));
+    assert(circle.equals(circle2));
+    Circle circle3(90, Point(10, 20));
+    assert(!circle.equals(circle3));
+
+    circle.draw();
+
+	/*
+	// Tests Triangle
+    Triangle triangle(Point(0, 0), Point(100, 0), Point(50, 100));
+    assert(equals(triangle.perimeter(), 100 + 2 * sqrt(50*50 + 100*100)));
+    assert(equals(triangle.area(), 0.5 * 100 * 100));
+
+    // Test triangle center
+    Point center = triangle.center();
+    assert(equals(center.x, 50));
+    assert(equals(center.y, 100/3.0));
+
+	Triangle triangle(Point(0, 0), Point(0, 100), Point(-50, 50));
+	assert(equals(triangle.perimeter(), 100 + 2 * sqrt(50*50 + 100*100)));
+    assert(equals(triangle.area(), 0.5 * 100 * 100));
+
+    // Test triangle translation
+    triangle.translate(Point(10, 10));
+    assert(equals(triangle.A.x, 10));
+    assert(equals(triangle.A.y, 10));
+    assert(equals(triangle.B.x, 110));
+    assert(equals(triangle.B.y, 10));
+    assert(equals(triangle.C.x, 60));
+    assert(equals(triangle.C.y, 110));
+
+    // Test triangle resize
+    Triangle triangle2(Point(0, 0), Point(100, 0), Point(50, 100));
+    Point originalCenter = triangle2.center();
+    triangle2.resize(0.5);
+    assert(equals(triangle2.area(), 0.5 * 0.5 * 0.5 * 100 * 100));
+    Point newCenter = triangle2.center();
+    assert(equals(originalCenter.x, newCenter.x));
+    assert(equals(originalCenter.y, newCenter.y));
+
+    // Test triangle rotation
+    Triangle triangle3(Point(0, 0), Point(100, 0), Point(50, 100));
+    Point centerBefore = triangle3.center();
+    triangle3.rotate(M_PI/2); // 90 degrees
+    Point centerAfter = triangle3.center();
+    assert(equals(centerBefore.x, centerAfter.x));
+    assert(equals(centerBefore.y, centerAfter.y));
+
+    // Test triangle equals
+    Triangle triangle4(Point(0, 0), Point(100, 0), Point(50, 100));
+    assert(triangle4.equals(triangle4));
+    Triangle triangle5(Point(0, 0), Point(100, 0), Point(50, 90));
+    assert(!triangle4.equals(triangle5));
+
+    // Test triangle properties
+    Triangle rightTriangle(Point(0, 0), Point(100, 0), Point(0, 100));
+    assert(rightTriangle.isRightAngled());
+    assert(!rightTriangle.isEquilateral());
+    assert(!rightTriangle.isIsoceles());
+
+    Triangle equilateralTriangle(Point(0, 0), Point(100, 0), Point(50, 50*sqrt(3)));
+    assert(!equilateralTriangle.isRightAngled());
+    assert(equilateralTriangle.isEquilateral());
+    assert(equilateralTriangle.isIsoceles());
+
+    Triangle isoscelesTriangle(Point(0, 0), Point(100, 0), Point(50, 100));
+    assert(!isoscelesTriangle.isRightAngled());
+    assert(!isoscelesTriangle.isEquilateral());
+    assert(isoscelesTriangle.isIsoceles());
+	*/
 
 	// Draw the picture by connecting the points
 	// draw_picture(points);
