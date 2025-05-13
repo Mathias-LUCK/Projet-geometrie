@@ -56,7 +56,6 @@ void Square::translate(Point T) {
     A.y += T.y;
     C.x += T.x;
     C.y += T.y;
-    draw();
 }
 
 void Square::resize(double ratio) {
@@ -65,7 +64,6 @@ void Square::resize(double ratio) {
     A.y = M.y - ratio * side() / 2;
     C.x = M.x + ratio * side() / 2;
     C.y = M.y + ratio * side() / 2;
-    draw();
 }
 
 void Square::rotate(double angle) {
@@ -73,7 +71,6 @@ void Square::rotate(double angle) {
     A.y = A.x * sin(angle) + A.y * cos(angle);
     C.x = C.x * cos(angle) - C.y * sin(angle);
     C.y = C.x * sin(angle) + C.y * cos(angle);
-    draw();
 }
 
 bool Square::equals(Square square) {
