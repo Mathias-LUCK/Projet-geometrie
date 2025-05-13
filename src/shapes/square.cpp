@@ -56,7 +56,6 @@ void Square::translate(Point T) {
     A.y += T.y;
     C.x += T.x;
     C.y += T.y;
-    draw();
 }
 
 void Square::resize(double ratio) {
@@ -65,24 +64,34 @@ void Square::resize(double ratio) {
     A.y = M.y - ratio * side() / 2;
     C.x = M.x + ratio * side() / 2;
     C.y = M.y + ratio * side() / 2;
-    draw();
 }
 
 void Square::rotate(double angle) {
-    double x = A.x;
-    double y = A.y;
-    A.x = x * cos(angle) - y * sin(angle);
-    A.y = x * sin(angle) + y * cos(angle);
-    x = C.x;
-    y = C.y;
-    C.x = x * cos(angle) - y * sin(angle);
-    C.y = x * sin(angle) + y * cos(angle);
-    draw();
+    A.x = A.x * cos(angle) - A.y * sin(angle);
+    A.y = A.x * sin(angle) + A.y * cos(angle);
+    C.x = C.x * cos(angle) - C.y * sin(angle);
+    C.y = C.x * sin(angle) + C.y * cos(angle);
 }
 
 bool Square::equals(Square square) {
     Point B, D, B_square, D_square;
+    // Calcul des coordonnées des autres points
     find_other_corner(A, C, B, D);
     find_other_corner(square.A, square.C, B_square, D_square);
+    // vérifie si les points définissant les diagonales sont identiques
     return (A.x == square.A.x && A.y == square.A.y && C.x == square.C.x && C.y == square.C.y) && (B.x == B_square.x && B.y == B_square.y && D.x == D_square.x && D.y == D_square.y);
+}
+
+Circle Square::inscribedCircle() {
+    // Calcul du rayon (côté / 2)
+    double r = side() / 2;
+    Point centerPoint = center();
+    return Circle(r, centerPoint);
+}
+
+Circle Square::circumscribedCircle() {
+    // Calcul du rayon (diagonal / 2)
+    double r = A.distance(C) / 2;
+    Point centerPoint = center();
+    return Circle(r, centerPoint);
 }
