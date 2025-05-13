@@ -49,7 +49,7 @@ int main() {
 	assert(square2.center().x == 50);
 	assert(square2.center().y == 50);
 	square2.resize(0.5);
-	
+
 	assert(square2.center().x == 50 && square2.center().y == 50);
 	assert( equals( square2.perimeter(), 2*100 ) );
 	assert( equals( square2.area(), 50*50) );
@@ -103,6 +103,7 @@ int main() {
     assert(!circle.equals(circle3));
 
     circle.draw();
+	cout << "All circle tests passed!" << endl;
 
 	/*
 	// Tests Triangle
@@ -115,8 +116,8 @@ int main() {
     assert(equals(center.x, 50));
     assert(equals(center.y, 100/3.0));
 
-	Triangle triangle(Point(0, 0), Point(0, 100), Point(-50, 50));
-	assert(equals(triangle.perimeter(), 100 + 2 * sqrt(50*50 + 100*100)));
+	Triangle triangle2(Point(0, 0), Point(0, 100), Point(-50, 50));
+	assert(equals(triangle.perimeter(), 100 + 2 * sqrt(2*50*50)));
     assert(equals(triangle.area(), 0.5 * 100 * 100));
 
     // Test triangle translation
