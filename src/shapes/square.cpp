@@ -56,7 +56,6 @@ void Square::translate(Point T) {
     A.y += T.y;
     C.x += T.x;
     C.y += T.y;
-    draw();
 }
 
 void Square::resize(double ratio) {
