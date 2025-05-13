@@ -36,11 +36,10 @@ void Circle::draw(){
 void Circle::translate(Point T){
     center.x += T.x;
     center.y += T.y;
-    draw();
 }
 
 void Circle::resize(double ratio){
-    draw();
+    radius *= ratio;
 }
 
 bool Circle::equals(Circle circle){
