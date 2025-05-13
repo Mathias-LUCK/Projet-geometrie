@@ -87,3 +87,18 @@ bool Triangle::isRightAngled(){
 bool Triangle::equals(Triangle triangle){
     return A.x == triangle.A.x && A.y == triangle.A.y && B.x == triangle.B.x && B.y == triangle.B.y && C.x == triangle.C.x && C.y == triangle.C.y;
 }
+
+Circle Triangle::inscribedCircle(){
+    double rayon = area() / perimeter();
+    Point centerPoint = center();
+    return Circle(rayon, centerPoint);
+}
+
+Circle Triangle::circumscribedCircle(){
+    double s = perimeter() / 2;
+    double rayon = A.distance(B) * B.distance(C) * C.distance(A) / (4 * area());
+    Point centerPoint;
+    centerPoint.x = (B.distance(C) * B.distance(C) + C.distance(A) * C.distance(A) - A.distance(B) * A.distance(B)) / 2 * B.distance(C);
+    centerPoint.y = (A.distance(B) * A.distance(B) + C.distance(A) * C.distance(A) - B.distance(C) * B.distance(C)) / 2 * A.distance(B);
+    return Circle(rayon, centerPoint);
+}
