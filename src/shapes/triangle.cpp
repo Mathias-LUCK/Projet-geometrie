@@ -70,4 +70,6 @@ bool Triangle::isEquilateral(){
     return false;
 }
 
-
+bool Triangle::equals(Triangle triangle){
+    return A.x == triangle.A.x && A.y == triangle.A.y && B.x == triangle.B.x && B.y == triangle.B.y && C.x == triangle.C.x && C.y == triangle.C.y;
+}
