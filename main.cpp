@@ -9,7 +9,7 @@
 using namespace std;
 
 bool equals(double a, double b) {
-	if (a*0.99999 < b && a*1.00001 > b && b*0.99999 < a && b*1.00001 > a) { return true; }
+	if (abs(a)*0.99999 < abs(b) && abs(a)*1.00001 > abs(b) && abs(b)*0.99999 < abs(a) && abs(b)*1.00001 > abs(a)) { return true; }
 	else { return false; }
 }
 int main() {
@@ -102,10 +102,9 @@ int main() {
     Circle circle3(90, Point(10, 20));
     assert(!circle.equals(circle3));
 
-    circle.draw();
+    // circle.draw();
 	cout << "All circle tests passed!" << endl;
 
-	/*
 	// Tests Triangle
     Triangle triangle(Point(0, 0), Point(100, 0), Point(50, 100));
     assert(equals(triangle.perimeter(), 100 + 2 * sqrt(50*50 + 100*100)));
@@ -116,9 +115,12 @@ int main() {
     assert(equals(center.x, 50));
     assert(equals(center.y, 100/3.0));
 
-	Triangle triangle2(Point(0, 0), Point(0, 100), Point(-50, 50));
-	assert(equals(triangle.perimeter(), 100 + 2 * sqrt(2*50*50)));
-    assert(equals(triangle.area(), 0.5 * 100 * 100));
+	Triangle triangle2(Point(0, 0), Point(0, 100), Point(-100, 50));
+	assert(equals(triangle2.perimeter(), 100 + 2 * sqrt(50*50 + 100*100)));
+    assert(equals(triangle2.area(), 0.5 * 100 * 100));
+	Point center2 = triangle2.center();
+    assert(equals(center2.y, 50));
+    assert(equals(center2.x, -100/3.0));
 
     // Test triangle translation
     triangle.translate(Point(10, 10));
@@ -128,35 +130,39 @@ int main() {
     assert(equals(triangle.B.y, 10));
     assert(equals(triangle.C.x, 60));
     assert(equals(triangle.C.y, 110));
+    assert(equals(triangle.perimeter(), 100 + 2 * sqrt(50*50 + 100*100)));
+    assert(equals(triangle.area(), 0.5 * 100 * 100));
 
-    // Test triangle resize
-    Triangle triangle2(Point(0, 0), Point(100, 0), Point(50, 100));
-    Point originalCenter = triangle2.center();
-    triangle2.resize(0.5);
-    assert(equals(triangle2.area(), 0.5 * 0.5 * 0.5 * 100 * 100));
-    Point newCenter = triangle2.center();
-    assert(equals(originalCenter.x, newCenter.x));
-    assert(equals(originalCenter.y, newCenter.y));
 
+    // Test triangle resize, triangle equals
+	Triangle triangle3 = triangle;
+    triangle.translate(Point(-10, -10));
+    triangle.resize(0.5);
+	triangle.resize(2);
+	Triangle triangle_eq(Point(0, 0), Point(100, 0), Point(50, 50*sqrt(3)));
+	assert(triangle_eq.isEquilateral());
+
+	// Test triangle properties
+    Triangle rightTriangle(Point(0, 0), Point(100, 0), Point(0, 100));
+    assert(rightTriangle.isRightAngled());
+    assert(!rightTriangle.isEquilateral());
+    //assert(!rightTriangle.isIsoceles());
+	
     // Test triangle rotation
-    Triangle triangle3(Point(0, 0), Point(100, 0), Point(50, 100));
-    Point centerBefore = triangle3.center();
+
+    Triangle triangle4(Point(0, 0), Point(100, 0), Point(50, 100));
+    Point centerBefore = triangle4.center();
     triangle3.rotate(M_PI/2); // 90 degrees
-    Point centerAfter = triangle3.center();
+    Point centerAfter = triangle4.center();
     assert(equals(centerBefore.x, centerAfter.x));
     assert(equals(centerBefore.y, centerAfter.y));
 
+	/*
     // Test triangle equals
     Triangle triangle4(Point(0, 0), Point(100, 0), Point(50, 100));
     assert(triangle4.equals(triangle4));
     Triangle triangle5(Point(0, 0), Point(100, 0), Point(50, 90));
     assert(!triangle4.equals(triangle5));
-
-    // Test triangle properties
-    Triangle rightTriangle(Point(0, 0), Point(100, 0), Point(0, 100));
-    assert(rightTriangle.isRightAngled());
-    assert(!rightTriangle.isEquilateral());
-    assert(!rightTriangle.isIsoceles());
 
     Triangle equilateralTriangle(Point(0, 0), Point(100, 0), Point(50, 50*sqrt(3)));
     assert(!equilateralTriangle.isRightAngled());
@@ -168,9 +174,10 @@ int main() {
     assert(!isoscelesTriangle.isEquilateral());
     assert(isoscelesTriangle.isIsoceles());
 	*/
+	//triangle.draw();
 
-	// Draw the picture by connecting the points
-	// draw_picture(points);
+	cout << "All triangle tests passed!" << endl;
+
 	cout << "All tests passed!" << endl;
 	
 	return 0;

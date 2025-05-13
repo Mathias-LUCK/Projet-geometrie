@@ -64,6 +64,15 @@ void Triangle::rotate(double angle) {
   rotatePt(C);
 }
 
+bool Triangle:: isIsoceles(){
+    if (isEquilateral() == true){
+        return true;
+    } else if (A.distance(B) == B.distance(C) or A.distance(B) == C.distance(A) or B.distance(C) == C.distance(A)){
+        return true;
+    }
+    return false;
+}
+
 bool Triangle::isEquilateral(){
     if (A.distance(B) == B.distance(C) and A.distance(B) == C.distance(A)){
         return true;
