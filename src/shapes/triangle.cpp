@@ -1,5 +1,8 @@
 #include "point.hpp"
 #include "shapes/triangle.hpp"
+#include <vector>
+#include "draw.hpp"
+#include <cmath>
 #include <iostream>
 using namespace std;
 
@@ -20,6 +23,11 @@ Point Triangle:: center(){
     return G;
 }
 
+void Triangle::draw(){
+    std::vector<Point> points = {A,B,C,A};
+    draw_picture(points);
+}
+
 void Triangle::translate(Point T){
     A.x += T.x;
     A.y += T.y;
@@ -38,6 +46,21 @@ void Triangle::resize(double ratio) {
   scalePt(A);
   scalePt(B);
   scalePt(C);
+}
+
+void Triangle::rotate(double angle) {
+  Point M = center();
+  double s = sin(angle), c = cos(angle);
+  auto rotatePt = [&](Point& P){
+    double dx = P.x - M.x, dy = P.y - M.y;
+    double x_new = dx * c - dy * s;
+    double y_new = dx * s + dy * c;
+    P.x = M.x + x_new;
+    P.y = M.y + y_new;
+  };
+  rotatePt(A);
+  rotatePt(B);
+  rotatePt(C);
 }
 
 bool Triangle::isEquilateral(){
