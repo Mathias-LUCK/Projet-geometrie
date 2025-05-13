@@ -37,7 +37,10 @@ int main() {
 	assert( equals( square.area(), 50*50+50*50) );
 	assert(square.center().x == 0);
 	assert(square.center().y == 50);
-	square.draw();
+	square.translate(Point(100, 0));
+	assert(square.center().x == 100);
+	assert(square.center().y == 50);
+	assert(square.equals(square));
 
 	Square square2(points.at(0), points.at(2));
 	assert( equals( square2.side(), 100) ) ;
@@ -45,7 +48,29 @@ int main() {
 	assert( equals( square2.area(), 100*100) );
 	assert(square2.center().x == 50);
 	assert(square2.center().y == 50);
-	square2.draw();
+	square2.resize(0.5);
+	cout << square2.center().x << " " << square2.center().y ; 
+	assert(square2.center().x == 50 && square2.center().y == 50);
+	assert( equals( square2.perimeter(), 2*100 ) );
+	assert( equals( square2.area(), 50*50) );
+	square2.resize(2);
+	square2.rotate(M_PI/2);
+	assert( equals( square2.side(), 100) ) ;
+	assert( equals( square2.perimeter(), 4*100 ) );
+	assert( equals( square2.area(), 100*100) );
+	assert(square2.center().x == 50 && square2.center().y == 50);
+	assert( square2.A.x == 100 && square2.A.y == 0);
+	assert( square2.C.x == 0 && square2.C.y == 100);
+
+	Circle in_circle = square2.inscribedCircle();
+	assert(in_circle.radius == 50);
+	assert(in_circle.center.x == 50 && in_circle.center.y == 50);
+
+	Square square3 = Square(Point(0, 0), Point(100, 100));
+	Circle out_circle = square2.circumscribedCircle();
+	assert(out_circle.radius == 50*sqrt(2));
+	assert(out_circle.center.x == 50 && in_circle.center.y == 50);
+	cout << "All square tests passed!" << endl;
 
 	// Tests cercle 
 	Circle circle(50, Point(0, 0));
