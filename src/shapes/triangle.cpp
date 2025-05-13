@@ -16,7 +16,7 @@ double Triangle::area(){
     double p = perimeter()/2;
     return sqrt(p*(p-A.distance(B))*(p-B.distance(C))*(p-C.distance(A)));
 }
-    
+
 Point Triangle::center(){
     Point G;
     G.x = (A.x+B.x+C.x)/3; //formule de xG
@@ -86,27 +86,4 @@ bool Triangle::isRightAngled(){
 
 bool Triangle::equals(Triangle triangle){
     return A.x == triangle.A.x && A.y == triangle.A.y && B.x == triangle.B.x && B.y == triangle.B.y && C.x == triangle.C.x && C.y == triangle.C.y;
-}
-
-bool Triangle::isRightAngled(){
-    if (A.distance(B)>A.distance (C) and A.distance(B)>B.distance (C)){
-        if (atan(A.distance(B)/A.distance(C))==90 or atan(A.distance(B)/B.distance(C))==90){
-            return true;
-        }
-        else {return false;}
-    }
-
-    if (A.distance(C)>A.distance (B) and A.distance(C)>B.distance (C)){
-        if (atan(A.distance(C)/A.distance(B))==90 or atan(A.distance(C)/B.distance(C))==90){
-            return true;
-        }
-        else {return false;}
-    }
-
-    if (B.distance(C)>A.distance (C) and B.distance(C)>A.distance (B)){
-        if (atan(B.distance(C)/A.distance(C))==90 or atan(B.distance(C)/A.distance(B))==90){
-            return true;
-        }
-        else {return false;}
-    }
 }
