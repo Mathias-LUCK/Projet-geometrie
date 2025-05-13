@@ -16,7 +16,7 @@ double Triangle::area(){
     return 1/2*(A.x*(B.y-C.y)+B.x*(C.y-A.y)+C.x*(A.y-B.y));
 }
 
-Point Triangle:: center(){
+Point Triangle::center(){
     Point G;
     G.x = (A.x+B.x+C.x)/3; //formule de xG
     G.y = (A.y+B.y+C.y)/3; //formule de yG
@@ -65,6 +65,19 @@ void Triangle::rotate(double angle) {
 
 bool Triangle::isEquilateral(){
     if (A.distance(B) == B.distance(C) and A.distance(B) == C.distance(A)){
+        return true;
+    }
+    return false;
+}
+
+bool Triangle::isRightAngled(){
+    if (A.distance(B) * A.distance(B) + B.distance(C) * B.distance(C) == C.distance(A) * C.distance(A)){
+        return true;
+    }
+    if (A.distance(B) * A.distance(B) + C.distance(A) * C.distance(A) == B.distance(C) * B.distance(C)){
+        return true;
+    }
+    if (B.distance(C) * B.distance(C) + C.distance(A) * C.distance(A) == A.distance(B) * A.distance(B)){
         return true;
     }
     return false;
