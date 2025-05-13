@@ -13,7 +13,9 @@ double Triangle::perimeter(){
 }
 
 double Triangle::area(){
+    // demi-périmètre
     double p = perimeter()/2;
+    // formule du Héron
     return sqrt(p*(p-A.distance(B))*(p-B.distance(C))*(p-C.distance(A)));
 }
 

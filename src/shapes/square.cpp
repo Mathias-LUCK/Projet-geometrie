@@ -83,12 +83,15 @@ void Square::rotate(double angle) {
 }
 
 bool Square::equals(Square square) {
-    Point B, D, B_square, D_square;
-    // Calcul des coordonnées des autres points
-    find_other_corner(A, C, B, D);
-    find_other_corner(square.A, square.C, B_square, D_square);
-    // vérifie si les points définissant les diagonales sont identiques
-    return (A.x == square.A.x && A.y == square.A.y && C.x == square.C.x && C.y == square.C.y) && (B.x == B_square.x && B.y == B_square.y && D.x == D_square.x && D.y == D_square.y);
+  Point B, D, B_square, D_square;
+  Square square90 = square;
+  square90.rotate(90);
+  Square square180 = square;
+  square180.rotate(180);
+  Square square270 = square;
+  square270.rotate(270);
+  // vérifie si les points définissant les diagonales sont identiques
+  return (A.x == square.A.x && A.y == square.A.y && C.x == square.C.x && C.y == square.C.y) || (A.x == square90.A.x && A.y == square90.A.y && C.x == square90.C.x && C.y == square90.C.y) || (A.x == square180.A.x && A.y == square180.A.y && C.x == square180.C.x && C.y == square180.C.y) || (A.x == square270.A.x && A.y == square270.A.y && C.x == square270.C.x && C.y == square270.C.y);
 }
 
 Circle Square::inscribedCircle() {
