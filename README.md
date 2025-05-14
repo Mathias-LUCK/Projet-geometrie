@@ -1,8 +1,5 @@
 # 2D Geometric Shapes Library in C++
 
-### LICENCE
-This project is under the MIT License.
-
 ## Description and Objective
 This project is a simple C++ library for creating and manipulating basic 2D geometric shapes. It allows for the definition of points, circles, triangles, and squares, calculating their properties (area, perimeter, center, etc.), performing geometric transformations (translation, rotation, resizing), and checking some of their specific characteristics.
 
@@ -23,7 +20,7 @@ Defined by a `radius` and a `Point center`.
 - `equals(Circle c)`: Compares with another circle.
 
 ### Triangle
-Defined by three `Point`s (A, B, C).
+Defined by three `Points` (A, B, C).
 - `perimeter()`: Calculates the perimeter.
 - `area()`: Calculates the area.
 - `center()`: Calculates the center of gravity.
@@ -44,7 +41,7 @@ The project is organized with the following files:
 - `circle.hpp`, `circle.cpp`: Definition and implementation of the `Circle` structure.
 - `triangle.hpp`, `triangle.cpp`: Definition and implementation of the `Triangle` structure.
 - `square.hpp`, `square.cpp`: Definition and implementation of the `Square` structure.
-- `draw.hpp`, `draw.cpp`: (Optional) Utility functions for drawing shapes (if implemented).
+- `draw.hpp`, `draw.cpp`: Utility functions for drawing shapes.
 - `shapes.hpp`: Main header file grouping all shapes for easy inclusion.
 - `main.cpp`: Main program serving as an entry point, containing usage examples and unit tests.
 
