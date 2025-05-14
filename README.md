@@ -54,7 +54,7 @@ The project is organized with the following files:
 ### Compile
 To compile the project (and the tests included in `main.cpp`), use a g++ command similar to this one from the project root:
 ```bash
-g++ -std=c++11 main.cpp point.cpp circle.cpp triangle.cpp square.cpp draw.cpp -o main
+g++ -std=c++23 -Iinclude -o main src/*.cpp src/shapes/*.cpp main.cpp -lgdi32 -luser32
 ```
 To execute :
 ```bash
