@@ -10,6 +10,7 @@ The main objective is to provide a set of clear and tested classes for common ge
 ### Point
 Represents a point in a 2D plane with `x` and `y` coordinates.
 - `distance(Point p)`: Calculates the distance to another point.
+- `equals(Point B)` : Verifies that the point is equal to Point B.
 
 ### Circle
 Defined by a `radius` and a `Point center`.
