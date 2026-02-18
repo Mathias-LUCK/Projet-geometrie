@@ -61,3 +61,6 @@ To execute :
 ```bash
 ./main
 ```
+
+
+Projet créé en collaboration avec Elian HIRTH, Nathan NKENZI et Niriantsoa RAKOTOARISOA pour un cours d'informatique.
